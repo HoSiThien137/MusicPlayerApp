@@ -19,9 +19,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHol
 
     private GenreHomeFragment context;
     private List<Genre> listGenre;
-    public GenreAdapter(GenreHomeFragment context){
-        this.context=context;
-    }
+
     public void setData(List<Genre> list){
         this.listGenre = list;
         notifyDataSetChanged();
