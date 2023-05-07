@@ -49,7 +49,6 @@ public class GenreHomeFragment extends Fragment {
         list2.add((new Genre(R.drawable.image4,"Album4")));
         ListCategory.add(new Category("Chủ đề và thể loại", list1));
         ListCategory.add(new Category("Album", list2));
-        ListCategory.add(new Category("Chủ đề và thể loại", list1));
         return ListCategory;
     }
     @Override

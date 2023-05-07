@@ -6,15 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.HomeActivity"
-    android:scrollbars="none"
     android:fillViewport="true"
     android:background="@drawable/gradient_background_1">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="580dp">
+        android:layout_height="580dp"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="570dp"
+            android:layout_height="500dp"
             android:orientation="vertical">
             <!--Image Slider-->
             <androidx.cardview.widget.CardView
@@ -42,11 +42,11 @@
                 android:id="@+id/genrefragment"
                 android:name="com.example.musicplayerapp.Fragment.GenreHomeFragment"
                 android:layout_width="match_parent"
-                android:layout_height="540dp"
-                android:layout_marginEnd="20dp"
+                android:layout_height="370dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginBottom="30dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="30dp"
                 android:layout_weight="1"
                 tools:layout="@layout/fragment_genre_home"></fragment>
         </LinearLayout>
@@ -63,7 +63,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/bottom_background"
             android:elevation="2dp"
             app:itemIconSize="30dp"

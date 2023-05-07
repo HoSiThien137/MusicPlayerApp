@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:id="@+id/txt_category_name"
-        android:textSize="18sp"
+        android:textSize="21sp"
         android:text="Category 1"
         android:textStyle="bold"/>
     <androidx.recyclerview.widget.RecyclerView
