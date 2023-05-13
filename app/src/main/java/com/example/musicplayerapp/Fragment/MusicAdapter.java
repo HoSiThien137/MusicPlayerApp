@@ -68,12 +68,14 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyVieHolder>
 
     public class MyVieHolder extends RecyclerView.ViewHolder {
         TextView file_name;
-        ImageView album_art;
+        ImageView album_art, menuMore;
 
         public MyVieHolder(@NonNull View itemView) {
             super(itemView);
             file_name =itemView.findViewById(R.id.music_file_name);
             album_art =itemView.findViewById(R.id.music_img);
+            menuMore = itemView.findViewById(R.id.menuMore);
+
         }
     }
     private byte[] getAlbumArt(String uri){
