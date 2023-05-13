@@ -18,6 +18,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.musicplayerapp.Fragment.AlbumFragment;
 import com.example.musicplayerapp.Fragment.MusicFiles;
@@ -35,7 +37,6 @@ public class PlaylistActivity extends AppCompatActivity{
         super.onCreate(saveInstancesState);
         setContentView(R.layout.activity_playlist);
         permission();
-
     }
 
     private void permission() {
