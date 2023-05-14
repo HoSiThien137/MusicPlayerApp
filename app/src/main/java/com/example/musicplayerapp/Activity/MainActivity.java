@@ -1,17 +1,10 @@
  package com.example.musicplayerapp.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
+ import android.os.Bundle;
 
-import android.content.Intent;
-import android.os.Bundle;
+ import androidx.appcompat.app.AppCompatActivity;
 
-import com.denzcoskun.imageslider.ImageSlider;
-import com.denzcoskun.imageslider.constants.ScaleTypes;
-import com.denzcoskun.imageslider.models.SlideModel;
-import com.example.musicplayerapp.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
+ import com.example.musicplayerapp.R;
 
  public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +12,7 @@ import java.util.ArrayList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ImageSlider imageSlider = findViewById(R.id.imageSlider);
+        /* ImageSlider imageSlider = findViewById(R.id.imageSlider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.image1, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.image2, ScaleTypes.FIT));
@@ -44,6 +37,6 @@ import java.util.ArrayList;
                     return true;
             }
             return false;
-        });
+        }); */
     }
 }

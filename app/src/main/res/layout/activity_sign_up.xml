@@ -37,15 +37,15 @@
                 android:textColor="#655DBB"/>
 
             <EditText
+                android:id="@+id/signup_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/signup_fullname"
-                android:background="@drawable/custom_editext"
                 android:layout_marginTop="20dp"
-                android:hint="Họ tên"
-                android:padding="8dp"
+                android:background="@drawable/custom_editext"
                 android:drawableLeft="@drawable/baseline_face_24"
-                android:drawablePadding="8dp"/>
+                android:drawablePadding="8dp"
+                android:hint="Họ tên"
+                android:padding="8dp" />
 
             <EditText
                 android:layout_width="match_parent"
