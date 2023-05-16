@@ -1,17 +1,23 @@
  package com.example.musicplayerapp.Activity;
 
+ import android.content.Intent;
  import android.os.Bundle;
 
  import androidx.appcompat.app.AppCompatActivity;
-
- import com.example.musicplayerapp.R;
 
  public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        // Mở trang đăng nhập (LoginActivity)
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+
+        // Đóng Activity hiện tại (MainActivity)
+        finish();
+
+        // setContentView(R.layout.activity_login);
         /* ImageSlider imageSlider = findViewById(R.id.imageSlider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.image1, ScaleTypes.FIT));

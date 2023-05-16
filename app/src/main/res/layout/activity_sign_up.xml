@@ -78,7 +78,8 @@
                 android:hint="Mật khẩu"
                 android:padding="8dp"
                 android:drawableLeft="@drawable/baseline_lock_24"
-                android:drawablePadding="8dp"/>
+                android:drawablePadding="8dp"
+                android:inputType="textPassword"/>
             
             <Button
                 android:layout_width="match_parent"

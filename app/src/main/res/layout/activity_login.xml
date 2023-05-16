@@ -62,7 +62,8 @@
                 android:hint="Mật khẩu"
                 android:padding="8dp"
                 android:drawableLeft="@drawable/baseline_lock_24"
-                android:drawablePadding="8dp"/>
+                android:drawablePadding="8dp"
+                android:inputType="textPassword"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -75,14 +76,16 @@
                 android:textColor="@color/white"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/signupRedirectText"
                 android:layout_gravity="center"
                 android:text="Chưa có tài khoản? Đăng ký"
                 android:layout_margin="10dp"
                 android:textSize="20sp"
-                android:padding="8dp"/>
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

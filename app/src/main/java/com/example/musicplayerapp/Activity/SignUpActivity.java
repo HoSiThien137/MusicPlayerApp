@@ -2,6 +2,7 @@ package com.example.musicplayerapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,12 +11,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.musicplayerapp.R;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText signup_fullname;
@@ -24,7 +28,6 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText signup_password;
     private Button signup_button;
     private TextView loginRedirectText;
-
 
 
     @Override
@@ -36,6 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
         signup_phonenumber = findViewById(R.id.signup_phonenumber);
         signup_username = findViewById(R.id.signup_username);
         signup_password = findViewById(R.id.signup_password);
+        signup_password.setTransformationMethod(new PasswordTransformationMethod());
         signup_button = findViewById(R.id.signup_button);
         loginRedirectText = findViewById(R.id.loginRedirectText);
 
@@ -50,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
                     String password = signup_password.getText().toString();
 
                     //Đăng ký tài khoản
-                    registerAccount(fullname, phone, username, password);
+                    performSignUp(fullname, phone, username, password);
             }
         });
         loginRedirectText.setOnClickListener(new View.OnClickListener() {
@@ -64,55 +68,96 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
-/*
-        CreateDatabase createDatabase;
-        createDatabase = new CreateDatabase(this);
-        createDatabase.open(); */
     }
-    private void registerAccount(String fullname, String phone, String username, String password) {
-        // Tạo kết nối tới cơ sở dữ liệu MySQL trên phpMyAdmin
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/id20579369_appmusic", "id20579369_highfive", "Highfive00@");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
-        // Thực hiện truy vấn để chèn dữ liệu đăng ký vào bảng tài khoản
-        if (conn != null) {
-            try {
-                // Tạo câu truy vấn SQL
-                String query = "INSERT INTO Account (Name, SDT, Username, Password) VALUES (?, ?, ?, ?)";
-                PreparedStatement statement = conn.prepareStatement(query);
+    private void performSignUp(String fullname, String phone, String username, String password) {
+        // Kiểm tra các trường có đúng định dạng hay không
 
-                // Đặt giá trị cho các tham số trong câu truy vấn
-                statement.setString(1, fullname);
-                statement.setString(2, phone);
-                statement.setString(3, username);
-                statement.setString(4, password);
+        boolean isValid = validateFields();
 
-                // Thực thi câu truy vấn INSERT
-                int rowsInserted = statement.executeUpdate();
+        if (isValid) {
+            // Gửi thông tin đăng ký lên server và xử lý logic đăng ký
 
-                // Kiểm tra xem có bản ghi được chèn thành công hay không
-                if (rowsInserted > 0) {
-                    Toast.makeText(SignUpActivity.this, "Đăng ký tài khoản thành công", Toast.LENGTH_SHORT).show();
-
-                    // Thực hiện các thao tác khác sau khi đăng ký thành công (ví dụ: chuyển đến màn hình đăng nhập)
-                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(SignUpActivity.this, "Đăng ký tài khoản thất bại", Toast.LENGTH_SHORT).show();
+            // Tạo request đăng ký
+            String url = "https://highfive-app.000webhostapp.com/Server/signup.php";
+            StringRequest request = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // Xử lý phản hồi từ server sau khi đăng ký
+                            if (response.equals("success")) {
+                                // Đăng ký thành công
+                                Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                // Đăng ký thất bại
+                                Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // Xử lý lỗi khi kết nối đến server
+                            Toast.makeText(SignUpActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    // Đưa các thông tin đăng ký vào trong parameters của request
+                    Map<String, String> params = new HashMap<>();
+                    params.put("name", fullname);
+                    params.put("sdt", phone);
+                    params.put("username", username);
+                    params.put("password", password);
+                    return params;
                 }
+            };
 
-                // Đóng kết nối và giải phóng tài nguyên
-                statement.close();
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            // Thực hiện request đăng ký bằng Volley
+            Volley.newRequestQueue(this).add(request);
+        } else {
+            // Hiển thị thông báo lỗi khi các trường không hợp lệ
+            Toast.makeText(this, "Thông tin đăng ký không hợp lệ", Toast.LENGTH_SHORT).show();
         }
     }
+    private boolean validateFields() {
+        // Kiểm tra và xác thực dữ liệu nhập vào
+        String fullname = signup_fullname.getText().toString().trim();
+        String phone = signup_phonenumber.getText().toString().trim();
+        String username = signup_username.getText().toString().trim();
+        String password = signup_password.getText().toString().trim();
+
+        // Kiểm tra các trường bắt buộc không được để trống
+        if (fullname.isEmpty()) {
+            signup_fullname.setError("Vui lòng nhập họ tên");
+            return false;
+        }
+
+        if (phone.isEmpty()) {
+            signup_phonenumber.setError("Vui lòng nhập số điện thoại");
+            return false;
+        }
+
+        if (username.isEmpty()) {
+            signup_username.setError("Vui lòng nhập tên đăng nhập");
+            return false;
+        }
+
+        if (password.isEmpty()) {
+            signup_password.setError("Vui lòng nhập mật khẩu");
+            return false;
+        }
+
+        // Kiểm tra các điều kiện khác cho các trường dữ liệu (nếu cần)
+
+        return true;
+    }
+
 
 }
+
