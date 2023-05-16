@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
 
@@ -22,17 +23,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
-
             android:padding="24dp"
             android:background="@drawable/custom_editext">
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đăng ký"
                 android:layout_gravity="center"
-                android:textSize="40sp"
+                android:textSize="35sp"
                 android:textStyle="bold"
                 android:textColor="#655DBB"/>
 
@@ -45,6 +44,9 @@
                 android:drawableLeft="@drawable/baseline_face_24"
                 android:drawablePadding="8dp"
                 android:hint="Họ tên"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 android:padding="8dp" />
 
             <EditText
@@ -54,6 +56,9 @@
                 android:background="@drawable/custom_editext"
                 android:layout_marginTop="20dp"
                 android:hint="Số điện thoại"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 android:padding="8dp"
                 android:drawableLeft="@drawable/baseline_call_24"
                 android:drawablePadding="8dp"/>
@@ -65,6 +70,9 @@
                 android:background="@drawable/custom_editext"
                 android:layout_marginTop="20dp"
                 android:hint="Tên Đăng nhập"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 android:padding="8dp"
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"/>
@@ -76,6 +84,9 @@
                 android:background="@drawable/custom_editext"
                 android:layout_marginTop="20dp"
                 android:hint="Mật khẩu"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 android:padding="8dp"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
@@ -88,7 +99,7 @@
                 android:text="Đăng ký"
                 android:background="@drawable/custom_button"
                 android:layout_marginTop="40dp"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"/>
 
             <TextView
@@ -97,8 +108,9 @@
                 android:id="@+id/loginRedirectText"
                 android:layout_gravity="center"
                 android:text="Đã có tài khoản? Đăng nhập"
+                android:textColor="@color/grey"
+                android:textSize="13sp"
                 android:layout_margin="10dp"
-                android:textSize="20sp"
                 android:padding="8dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

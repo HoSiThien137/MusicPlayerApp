@@ -61,8 +61,6 @@ public class LoginActivity extends AppCompatActivity {
                 // Gọi phương thức kiểm tra đăng nhập
                  if (performLogin(username, password)) {
                     // Đăng nhập thành công
-
-
                      // Đóng Activity hiện tại (LoginActivity)
                      finish();
                 }
