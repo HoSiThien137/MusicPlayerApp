@@ -85,7 +85,7 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             // Xử lý phản hồi từ server sau khi đăng ký
-                            if (response.equals("success")) {
+                            if (response.equals("Success")) {
                                 // Đăng ký thành công
                                 Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);

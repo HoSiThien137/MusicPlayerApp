@@ -1,5 +1,22 @@
 package com.example.musicplayerapp.Model;
 
-public interface DataService {
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+
+public interface DataService {
+    @FormUrlEncoded
+    @POST("search.php")
+    Call<List<BaiHatSearch>> GetSearchBaiHat (@Field("tukhoa") String tukhoa, @Field("user") String user);
+
+    @FormUrlEncoded
+    @POST("deleteYeuThich.php")
+    Call<Void> DeleteYeuThich (@Field("IdBaiHat") int IdBaiHat, @Field("Username") String Username);
+    @FormUrlEncoded
+    @POST("addYeuThich.php")
+    Call<Void> AddYeuThich (@Field("IdBaiHat") int IdBaiHat, @Field("Username") String Username);
 }

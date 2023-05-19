@@ -19,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        //image slider
         ImageSlider imageSlider = findViewById(R.id.imageSlider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.image1, ScaleTypes.FIT));
@@ -26,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         slideModels.add(new SlideModel(R.drawable.image3, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.image4, ScaleTypes.FIT));
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.bottom_home);
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -46,4 +48,5 @@ public class HomeActivity extends AppCompatActivity {
             return false;
         });
     }
+
 }

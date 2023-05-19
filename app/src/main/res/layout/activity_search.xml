@@ -7,7 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".Activity.SearchActivity"
     android:background="@drawable/gradient_background_1">
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="602dp"
+        android:id="@+id/genrefragment"
+        android:name="com.example.musicplayerapp.Fragment.SearchFragment"
 
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_search">
+
+    </fragment>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

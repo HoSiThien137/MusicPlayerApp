@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText login_username, login_password;
     private Button login_button;
     private TextView signupRedirectText;
-
+    public static String user="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                             boolean isLoginSucessful = true;
                             // Đăng nhập thành công
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            user = login_username.getText().toString().trim();
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intent);
 
