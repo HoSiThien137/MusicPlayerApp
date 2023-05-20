@@ -9,11 +9,13 @@
     android:background="@drawable/gradient_background_1">
     <fragment
         android:layout_width="match_parent"
-        android:layout_height="602dp"
+        android:layout_height="wrap_content"
         android:id="@+id/genrefragment"
         android:name="com.example.musicplayerapp.Fragment.SearchFragment"
-
         android:layout_weight="1"
+        android:layout_marginBottom="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         tools:layout="@layout/fragment_search">
 
     </fragment>

@@ -73,8 +73,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, PlayerActivity.class);
-                    intent.putExtra("cakhuc",mangBaiHat.get(getAdapterPosition()));
-                    context.startActivities(intent);
+                    //intent.putExtra("cakhuc",mangBaiHat.get(getAdapterPosition()));
+                    //context.startActivities(intent);
                 }
             });
             imgFavorite.setOnClickListener(new View.OnClickListener(){
