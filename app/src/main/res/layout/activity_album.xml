@@ -24,4 +24,9 @@
         app:itemIconSize="30dp"
         app:itemRippleColor="@android:color/transparent"
         app:labelVisibilityMode="unlabeled"/>
+    <fragment
+        android:name="com.example.musicplayerapp.Fragment.PlayListFragment"
+        android:id="@+id/fragmentplaylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

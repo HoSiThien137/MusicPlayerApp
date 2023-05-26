@@ -4,17 +4,27 @@ package com.example.musicplayerapp.Fragment;
 import static com.example.musicplayerapp.Activity.PlaylistActivity.musicFiles;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.example.musicplayerapp.Model.APIService;
+import com.example.musicplayerapp.Model.BaiHat;
+import com.example.musicplayerapp.Model.DataService;
 import com.example.musicplayerapp.MusicAdapter;
 import com.example.musicplayerapp.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SongsFragment extends Fragment {
     RecyclerView recyclerView;
@@ -36,6 +46,24 @@ public class SongsFragment extends Fragment {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
 
         }
+        GetData();
         return view;
+    }
+
+    private void GetData() {
+        DataService dataService = APIService.getService();
+        Call<List<BaiHat>> callback = dataService.GetDataSong();
+        callback.enqueue(new Callback<List<BaiHat>>() {
+            @Override
+            public void onResponse(Call<List<BaiHat>> call, Response<List<BaiHat>> response) {
+                ArrayList<BaiHat> baihat = (ArrayList<BaiHat>) response.body();
+                Log.d("BBB", baihat.get(0).getTenBaiHat());
+            }
+
+            @Override
+            public void onFailure(Call<List<BaiHat>> call, Throwable t) {
+
+            }
+        });
     }
 }

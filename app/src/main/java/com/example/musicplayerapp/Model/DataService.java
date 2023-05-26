@@ -9,6 +9,21 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface DataService {
+    @GET("BaiHat.php")
+    Call<List<BaiHat>> GetDataSong();
+
+    @GET("playlist.php")
+    Call<List<PlayList>> GetPlayListCurrentDay();
+
+    @GET("TheLoaiChuDe.php")
+    Call<Theloaitrongngay> GetCategoryMusic();
+
+    @GET("album.php")
+    Call<List<Album>> GetAlbumHot();
+
+    @FormUrlEncoded
+    @POST("BaiHat.php")
+    Call<List<BaiHat>> GetDanhsachbaihattheoplaylist(@Field("IdPlayList") String IdPlayList);
     @FormUrlEncoded
     @POST("search.php")
     Call<List<BaiHatSearch>> GetSearchBaiHat (@Field("tukhoa") String tukhoa, @Field("user") String user);

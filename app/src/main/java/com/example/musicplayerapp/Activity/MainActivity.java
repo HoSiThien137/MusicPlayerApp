@@ -11,11 +11,11 @@
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Mở trang đăng nhập (LoginActivity)
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//        startActivity(intent);
 
         // Đóng Activity hiện tại (MainActivity)
-        finish();
+        //finish();
 
         // setContentView(R.layout.activity_login);
         /* ImageSlider imageSlider = findViewById(R.id.imageSlider);

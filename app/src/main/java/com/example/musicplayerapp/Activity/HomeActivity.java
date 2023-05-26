@@ -33,6 +33,9 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.bottom_home:
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_in_left);
+                    finish();
                     return true;
                 case R.id.bottom_search:
                     startActivity(new Intent(getApplicationContext(), SearchActivity.class));
