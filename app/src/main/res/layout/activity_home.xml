@@ -11,19 +11,19 @@
     android:background="@drawable/gradient_background_1">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="580dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
         android:scrollbars="none">
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="60dp"
             android:orientation="vertical"
             android:scrollbars="vertical">
             <!--Image Slider-->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="199dp"
+                android:layout_height="210dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
@@ -34,35 +34,26 @@
                 <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/imageSlider"
                     android:layout_width="match_parent"
-                    android:layout_height="199dp"
+                    android:layout_height="210dp"
                     app:iss_auto_cycle="true"
                     app:iss_corner_radius="20"
                     app:iss_delay="1000"
-                    app:iss_period="1000"
+                    app:iss_period="5000"
                     app:iss_title_background="@drawable/default_gradient" />
         </androidx.cardview.widget.CardView>
 
-<!--        <fragment-->
-<!--            android:id="@+id/genrefragment"-->
-<!--            android:name="com.example.musicplayerapp.Fragment.GenreHomeFragment"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="226dp"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:layout_marginBottom="50dp"-->
-<!--            android:layout_weight="1"-->
-<!--            tools:layout="@layout/fragment_genre_home"/>-->
             <fragment
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:name="com.example.musicplayerapp.Fragment.Fragment_ChuDe_TheLoai_ToDay"
                 android:id="@+id/fragmentchudetheloaitoday"/>
             <fragment
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:name="com.example.musicplayerapp.Fragment.AlbumFragment"

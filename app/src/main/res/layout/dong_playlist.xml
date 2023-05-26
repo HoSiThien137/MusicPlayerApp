@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content">
-    <!--    android:layout_width="match_parent"-->
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
 
     <ImageView
         android:layout_marginLeft="8dp"
@@ -11,14 +11,14 @@
         android:id="@+id/imageviewbackgroundplaylist"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="110dp"/>
+        android:layout_height="150dp"/>
     <View
         android:background="@drawable/gredient_bg"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="110dp"/>
+        android:layout_height="150dp"/>
     <ImageView
         android:id="@+id/imageviewplaylist"
         android:layout_alignBottom="@id/imageviewbackgroundplaylist"
@@ -29,7 +29,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"/>
     <TextView
-        android:textSize="13sp"
+        android:textSize="20sp"
         android:text="Nhung bai hit cu"
         android:layout_alignBottom="@id/imageviewplaylist"
         android:layout_toRightOf="@id/imageviewplaylist"

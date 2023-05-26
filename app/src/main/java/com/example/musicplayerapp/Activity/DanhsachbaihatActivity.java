@@ -61,6 +61,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
 
     private void setValueInview(String tenPlayList, String hinhNen) {
         collapsingToolbarLayout.setTitle(tenPlayList);
+        collapsingToolbarLayout.setExpandedTitleTextSize(60);
         try{
             URL url = new URL(hinhNen);
             Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());

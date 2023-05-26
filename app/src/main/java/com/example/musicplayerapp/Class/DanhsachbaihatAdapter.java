@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.musicplayerapp.Activity.LoginActivity;
 import com.example.musicplayerapp.Activity.PlayerActivity;
 import com.example.musicplayerapp.Model.APIService;
 import com.example.musicplayerapp.Model.BaiHat;
@@ -62,7 +63,7 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
             imgluotthich.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    imgluotthich.setImageResource(R.drawable.baseline_favorite);
+                    imgluotthich.setImageResource(R.drawable.baseline_favorite_red);
                     DataService dataService = APIService.getService();
                     //Call<String> callback = dataService.UpdateLuotThich();
                     Call<String> callback;
