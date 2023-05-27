@@ -71,7 +71,7 @@ public class PlayListFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<PlayList>> call, Throwable t) {
-                Log.d("BBB","Lỗi load rồi chó ngu");
+
             }
         });
     }

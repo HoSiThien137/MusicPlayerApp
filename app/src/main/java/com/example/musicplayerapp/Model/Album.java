@@ -3,7 +3,12 @@ package com.example.musicplayerapp.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Album {
+import java.io.Serializable;
+
+public class Album implements Serializable {
+    @SerializedName("IdAlbum")
+    @Expose
+    private String idAlbum;
     @SerializedName("TenAlbum")
     @Expose
     private String tenAlbum;
@@ -17,7 +22,13 @@ public class Album {
     public String getTenAlbum() {
         return tenAlbum;
     }
+    public String getIdAlbum() {
+        return idAlbum;
+    }
 
+    public void setIdAlbum(String idAlbum) {
+        this.idAlbum = idAlbum;
+    }
     public void setTenAlbum(String tenAlbum) {
         this.tenAlbum = tenAlbum;
     }

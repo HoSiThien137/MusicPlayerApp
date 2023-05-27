@@ -1,9 +1,11 @@
 package com.example.musicplayerapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.musicplayerapp.Activity.DanhsachbaihatActivity;
 import com.example.musicplayerapp.Class.AlbumAdapter;
 import com.example.musicplayerapp.Model.APIService;
 import com.example.musicplayerapp.Model.Album;

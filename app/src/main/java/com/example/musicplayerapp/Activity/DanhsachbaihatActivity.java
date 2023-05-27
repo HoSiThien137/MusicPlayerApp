@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musicplayerapp.Class.DanhsachbaihatAdapter;
 import com.example.musicplayerapp.Model.APIService;
+import com.example.musicplayerapp.Model.Album;
 import com.example.musicplayerapp.Model.BaiHat;
 import com.example.musicplayerapp.Model.ChuDe;
 import com.example.musicplayerapp.Model.DataService;
@@ -51,6 +52,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     PlayList playList;
     TheLoai theLoai;
     ChuDe chuDe;
+    Album album;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +61,10 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         anhxa();
         init();
         if(playList != null && !playList.getTenPlayList().equals("")){
-            setValueInview(playList.getTenPlayList(), playList.getHinhIcon());
+            setValueInview(playList.getTenPlayList(), playList.getHinhNen());
             GetDataPlaylist(playList.getIdPlayList());
         }
-        else if(theLoai != null && !theLoai.getTenTheLoai().equals("")){
+        if(theLoai != null && !theLoai.getTenTheLoai().equals("")){
             setValueInview(theLoai.getTenTheLoai(), theLoai.getHinhTheLoai());
             GetDataTheLoai(theLoai.getIdTheLoai());
         }
@@ -70,32 +72,42 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             setValueInview(chuDe.getTenChuDe(), chuDe.getHinhChuDe());
             GetDataChuDe(chuDe.getIdChuDe());
         }
+        else if(album != null && !album.getTenAlbum().equals("")){
+            setValueInview(album.getTenAlbum(), album.getHinhAlbum());
+            GetDataAlbum(album.getIdAlbum());
+        }
+    }
+
+    private void GetDataAlbum(String IdAlbum) {
+        DataService dataService = APIService.getService();
+        Call<List<BaiHat>> callback = dataService.GetDanhSachBaiHatAlbum(IdAlbum,LoginActivity.user);
+        callback.enqueue(new Callback<List<BaiHat>>() {
+            @Override
+            public void onResponse(Call<List<BaiHat>> call, Response<List<BaiHat>> response) {
+                mangbaihat = (ArrayList<BaiHat>) response.body();
+                danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this, mangbaihat);
+                recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<BaiHat>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void setValueInview(String ten, String hinhNen) {
-        //hinhNen = "https://i.redd.it/toqvsx98jlg01.jpg";
-        collapsingToolbarLayout.setTitle(ten);
-        collapsingToolbarLayout.setExpandedTitleTextSize(60);
         try{
+            collapsingToolbarLayout.setTitle(ten);
+            collapsingToolbarLayout.setExpandedTitleTextSize(60);
             URL url = new URL(hinhNen);
             Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
             BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bitmap);
-            //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             collapsingToolbarLayout.setBackground(bitmapDrawable);
-        }catch (MalformedURLException e){
-            e.printStackTrace();
-        }catch (IOException e){
+        }catch (Exception e){
             e.printStackTrace();
         }
-        //if(playList != null){
-            hinhNen = playList.getHinhNen();
-//        }
-//        else if(theLoai != null){
-//            hinhNen = theLoai.getHinhTheLoai();
-//        }
-//        else if(chuDe != null){
-//            hinhNen = chuDe.getHinhChuDe();
-//        }
         Picasso.get().load(hinhNen).into(imgdanhsachcakhuc);
     }
     private void GetDataTheLoai (String IdTheLoai){
@@ -179,6 +191,9 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             }
             else if(intent.hasExtra("idchude")){
                 chuDe = (ChuDe) intent.getSerializableExtra("idchude");
+            }
+            else if(intent.hasExtra("idalbum")){
+                album = (Album) intent.getSerializableExtra("idalbum");
             }
         }
     }

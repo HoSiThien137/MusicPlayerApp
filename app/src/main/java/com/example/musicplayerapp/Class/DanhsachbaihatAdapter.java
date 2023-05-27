@@ -57,10 +57,10 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
         return mangbaihat.size();
     }
 
-    public class ViewHolder  extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder{
         TextView txtindex, txttenbaihat, txtcasi;
         ImageView imgluotthich;
-        public ViewHolder(View itemView){
+        public ViewHolder(View itemView) {
             super(itemView);
             txtcasi = itemView.findViewById(R.id.textviewcasi);
             txtindex = itemView.findViewById(R.id.textviewdanhsachindex);

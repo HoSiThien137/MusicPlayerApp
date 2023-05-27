@@ -82,7 +82,7 @@ public class Fragment_ChuDe_TheLoai_ToDay extends Fragment {
                         imageView.setOnClickListener(view -> {
                             Intent intent = new Intent(getActivity(), DanhsachbaihatActivity.class);
                             intent.putExtra("idchude",chuDeArrayList.get(finalI));
-                            startActivity(intent);
+                            context.startActivity(intent);
                         });
                     }
                     for(int j = 0 ; j<theLoaiArrayList.size(); j++){
@@ -100,7 +100,7 @@ public class Fragment_ChuDe_TheLoai_ToDay extends Fragment {
                         imageView.setOnClickListener(view -> {
                             Intent intent = new Intent(getActivity(), DanhsachbaihatActivity.class);
                             intent.putExtra("idtheloai",theLoaiArrayList.get(finalJ));
-                            startActivity(intent);
+                            context.startActivity(intent);
                         });
                     }
                     horizontalScrollView.addView(linearLayout);
