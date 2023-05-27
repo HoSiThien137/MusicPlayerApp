@@ -3,14 +3,25 @@ package com.example.musicplayerapp.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class TheLoai {
+import java.io.Serializable;
+
+public class TheLoai implements Serializable {
+    @SerializedName("IdTheLoai")
+    @Expose
+    private String idTheLoai;
     @SerializedName("TenTheLoai")
     @Expose
     private String tenTheLoai;
     @SerializedName("HinhTheLoai")
     @Expose
     private String hinhTheLoai;
+    public String getIdTheLoai() {
+        return idTheLoai;
+    }
 
+    public void setIdTheLoai(String idTheLoai) {
+        this.idTheLoai = idTheLoai;
+    }
     public String getTenTheLoai() {
         return tenTheLoai;
     }
@@ -26,5 +37,6 @@ public class TheLoai {
     public void setHinhTheLoai(String hinhTheLoai) {
         this.hinhTheLoai = hinhTheLoai;
     }
+
 
 }

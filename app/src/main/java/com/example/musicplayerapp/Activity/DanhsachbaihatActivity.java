@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.musicplayerapp.Class.DanhsachbaihatAdapter;
 import com.example.musicplayerapp.Model.APIService;
 import com.example.musicplayerapp.Model.BaiHat;
+import com.example.musicplayerapp.Model.ChuDe;
 import com.example.musicplayerapp.Model.DataService;
 import com.example.musicplayerapp.Model.PlayList;
+import com.example.musicplayerapp.Model.TheLoai;
 import com.example.musicplayerapp.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -46,6 +49,8 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     ArrayList<BaiHat> mangbaihat;
     DanhsachbaihatAdapter danhsachbaihatAdapter;
     PlayList playList;
+    TheLoai theLoai;
+    ChuDe chuDe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +62,19 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             setValueInview(playList.getTenPlayList(), playList.getHinhIcon());
             GetDataPlaylist(playList.getIdPlayList());
         }
+        else if(theLoai != null && !theLoai.getTenTheLoai().equals("")){
+            setValueInview(theLoai.getTenTheLoai(), theLoai.getHinhTheLoai());
+            GetDataTheLoai(theLoai.getIdTheLoai());
+        }
+        else if(chuDe != null && !chuDe.getTenChuDe().equals("")){
+            setValueInview(chuDe.getTenChuDe(), chuDe.getHinhChuDe());
+            GetDataChuDe(chuDe.getIdChuDe());
+        }
     }
 
-    private void setValueInview(String tenPlayList, String hinhNen) {
-        collapsingToolbarLayout.setTitle(tenPlayList);
+    private void setValueInview(String ten, String hinhNen) {
+        //hinhNen = "https://i.redd.it/toqvsx98jlg01.jpg";
+        collapsingToolbarLayout.setTitle(ten);
         collapsingToolbarLayout.setExpandedTitleTextSize(60);
         try{
             URL url = new URL(hinhNen);
@@ -73,13 +87,20 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         }catch (IOException e){
             e.printStackTrace();
         }
-        hinhNen = "https://th.bing.com/th/id/OIP.XAbTg_hkwg5nhkuU81MaHAHaJ3?w=182&h=243&c=7&r=0&o=5&dpr=1.3&pid=1.7";
+        //if(playList != null){
+            hinhNen = playList.getHinhNen();
+//        }
+//        else if(theLoai != null){
+//            hinhNen = theLoai.getHinhTheLoai();
+//        }
+//        else if(chuDe != null){
+//            hinhNen = chuDe.getHinhChuDe();
+//        }
         Picasso.get().load(hinhNen).into(imgdanhsachcakhuc);
     }
-
-    private void GetDataPlaylist(String idplaylist) {
+    private void GetDataTheLoai (String IdTheLoai){
         DataService dataService = APIService.getService();
-        Call<List<BaiHat>> callback = dataService.GetDanhsachbaihattheoplaylist(idplaylist);
+        Call<List<BaiHat>> callback = dataService.GetDanhSachBaiHatTheLoai(IdTheLoai,LoginActivity.user);
         callback.enqueue(new Callback<List<BaiHat>>() {
             @Override
             public void onResponse(Call<List<BaiHat>> call, Response<List<BaiHat>> response) {
@@ -95,16 +116,46 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             }
         });
     }
+    private void GetDataPlaylist(String IdPlayList) {
+        DataService dataService = APIService.getService();
+        Call<List<BaiHat>> callback = dataService.GetDanhSachBaiHatPlayList(IdPlayList,LoginActivity.user);
+        callback.enqueue(new Callback<List<BaiHat>>() {
+            @Override
+            public void onResponse(Call<List<BaiHat>> call, Response<List<BaiHat>> response) {
+                mangbaihat = (ArrayList<BaiHat>) response.body();
+                danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this, mangbaihat);
+                recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+            }
 
+            @Override
+            public void onFailure(Call<List<BaiHat>> call, Throwable t) {
+
+            }
+        });
+    }
+    private void GetDataChuDe(String IdChuDe) {
+        DataService dataService = APIService.getService();
+        Call<List<BaiHat>> callback = dataService.GetDanhSachBaiHatChuDe(IdChuDe,LoginActivity.user);
+        callback.enqueue(new Callback<List<BaiHat>>() {
+            @Override
+            public void onResponse(Call<List<BaiHat>> call, Response<List<BaiHat>> response) {
+                mangbaihat = (ArrayList<BaiHat>) response.body();
+                danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this, mangbaihat);
+                recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<BaiHat>> call, Throwable t) {
+
+            }
+        });
+    }
     private void init(){
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // tạo click để trở về trang trước
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> finish());
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
     }
@@ -122,7 +173,12 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         if(intent !=  null){
             if(intent.hasExtra("itemplaylist")){
                 playList = (PlayList) intent.getSerializableExtra("itemplaylist");
-                Toast.makeText(this, "nhố", Toast.LENGTH_SHORT).show();
+            }
+            else if(intent.hasExtra("idtheloai")){
+                theLoai = (TheLoai) intent.getSerializableExtra("idtheloai");
+            }
+            else if(intent.hasExtra("idchude")){
+                chuDe = (ChuDe) intent.getSerializableExtra("idchude");
             }
         }
     }

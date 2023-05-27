@@ -30,22 +30,28 @@ public class PlayListAdapter extends ArrayAdapter<PlayList> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        ViewHolder viewHolder = null;
-        if(convertView == null){
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.dong_playlist, null);
-            viewHolder = new ViewHolder();
-            viewHolder.txttenplaylist =  convertView.findViewById(R.id.textviewtenplaylist);
-            viewHolder.imgplaylist = convertView.findViewById(R.id.imageviewplaylist);
-            viewHolder.imgbackground = convertView.findViewById(R.id.imageviewbackgroundplaylist);
-            convertView.setTag(viewHolder);
-        }else{
-            viewHolder = (ViewHolder) convertView.getTag();
+        Context context = getContext(); // or getActivity()
+        if (context != null) {
+            ViewHolder viewHolder = null;
+            if (convertView == null) {
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                convertView = inflater.inflate(R.layout.dong_playlist, null);
+                viewHolder = new ViewHolder();
+                viewHolder.txttenplaylist = convertView.findViewById(R.id.textviewtenplaylist);
+                viewHolder.imgplaylist = convertView.findViewById(R.id.imageviewplaylist);
+                viewHolder.imgbackground = convertView.findViewById(R.id.imageviewbackgroundplaylist);
+                convertView.setTag(viewHolder);
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+            PlayList playList = getItem(position);
+            Picasso.get().load(playList.getHinhNen()).into(viewHolder.imgbackground);
+            Picasso.get().load(playList.getHinhIcon()).into(viewHolder.imgplaylist);
+            viewHolder.txttenplaylist.setText(playList.getTenPlayList());
+
+        } else {
+            // Handle the case where the context is null
         }
-        PlayList playList = getItem(position);
-        Picasso.get().load(playList.getHinhNen()).into(viewHolder.imgbackground);
-        Picasso.get().load(playList.getHinhIcon()).into(viewHolder.imgplaylist);
-        viewHolder.txttenplaylist.setText(playList.getTenPlayList());
         return convertView;
     }
 }

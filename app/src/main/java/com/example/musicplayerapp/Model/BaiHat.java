@@ -75,5 +75,12 @@ public class BaiHat {
     public void setLink(String link) {
         this.link = link;
     }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
 }

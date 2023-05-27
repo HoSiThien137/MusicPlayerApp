@@ -12,8 +12,9 @@ public interface DataService {
     @GET("BaiHat.php")
     Call<List<BaiHat>> GetDataSong();
 
-    @GET("playlist.php")
-    Call<List<PlayList>> GetPlayListCurrentDay();
+    @FormUrlEncoded
+    @POST("playlist.php")
+    Call<List<PlayList>> GetPlayListCurrentDay(@Field("user") String user);
 
     @GET("TheLoaiChuDe.php")
     Call<Theloaitrongngay> GetCategoryMusic();
@@ -22,8 +23,14 @@ public interface DataService {
     Call<List<Album>> GetAlbumHot();
 
     @FormUrlEncoded
-    @POST("BaiHat.php")
-    Call<List<BaiHat>> GetDanhsachbaihattheoplaylist(@Field("IdPlayList") String IdPlayList);
+    @POST("DanhSachBaiHat.php")
+    Call<List<BaiHat>> GetDanhSachBaiHatPlayList(@Field("IdPlayList") String IdPlayList, @Field("user") String user);
+    @FormUrlEncoded
+    @POST("DanhSachBaiHat.php")
+    Call<List<BaiHat>> GetDanhSachBaiHatTheLoai(@Field("IdTheLoai") String IdTheLoai, @Field("user") String user);
+    @FormUrlEncoded
+    @POST("DanhSachBaiHat.php")
+    Call<List<BaiHat>> GetDanhSachBaiHatChuDe(@Field("IdChuDe") String IdChuDe, @Field("user") String user);
     @FormUrlEncoded
     @POST("search.php")
     Call<List<BaiHatSearch>> GetSearchBaiHat (@Field("tukhoa") String tukhoa, @Field("user") String user);

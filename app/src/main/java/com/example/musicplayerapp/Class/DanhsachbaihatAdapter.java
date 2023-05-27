@@ -15,6 +15,7 @@ import com.example.musicplayerapp.Activity.LoginActivity;
 import com.example.musicplayerapp.Activity.PlayerActivity;
 import com.example.musicplayerapp.Model.APIService;
 import com.example.musicplayerapp.Model.BaiHat;
+import com.example.musicplayerapp.Model.BaiHatSearch;
 import com.example.musicplayerapp.Model.DataService;
 import com.example.musicplayerapp.R;
 
@@ -22,6 +23,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAdapter.ViewHolder>{
     Context context;
@@ -44,6 +47,9 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
         holder.txtcasi.setText(baiHat.getCaSi());
         holder.txttenbaihat.setText(baiHat.getTenBaiHat());
         holder.txtindex.setText(position + 1 + "");
+        if (baiHat.getUsername().equals(LoginActivity.user)){
+            holder.imgluotthich.setImageResource(R.drawable.baseline_favorite_red);
+        }
     }
 
     @Override
@@ -62,26 +68,39 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
             imgluotthich = itemView.findViewById(R.id.imageviewluotthichdanhsachbaihat);
             imgluotthich.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    imgluotthich.setImageResource(R.drawable.baseline_favorite_red);
-                    DataService dataService = APIService.getService();
-                    //Call<String> callback = dataService.UpdateLuotThich();
-                    Call<String> callback;
-//                    callback.enqueue(new Callback<String>() {
-//                        @Override
-//                        public void onResponse(Call<String> call, Response<String> response) {
-//                            String ketqua = response.body();
-//                            if(ketqua.equals("Success")){
-//                                Toast.makeText(context, "Đã thích", Toast.LENGTH_SHORT).show();
-//                            }else Toast.makeText(context, "Lỗi", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<String> call, Throwable t) {
-//
-//                        }
-//                    });
-                    imgluotthich.setEnabled(false);
+                public void onClick(View view) {
+                    int i= getAdapterPosition();
+                    BaiHat baihat= mangbaihat.get(i);
+                    if (baihat.getUsername().equals(LoginActivity.user)){
+                        DataService dataService = APIService.getService();
+                        Call<Void> callback = dataService.DeleteYeuThich(Integer.parseInt(baihat.getIdBaiHat()) ,LoginActivity.user);
+                        callback.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                imgluotthich.setImageResource(R.drawable.baseline_favorite_black);
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+
+                            }
+                        });
+                    } else{
+                        DataService dataService = APIService.getService();
+                        Call<Void> callback = dataService.AddYeuThich(Integer.parseInt(baihat.getIdBaiHat()) ,LoginActivity.user);
+                        callback.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                imgluotthich.setImageResource(R.drawable.baseline_favorite_red);
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+
+                            }
+                        });
+                    }
+
                     itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -94,6 +113,7 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
             });
         }
     }
+
 //    private void evenClisk(){
 //        FloatingActionButton floatingActionButton.setEnable(true);
 //        floatingActionButton.setOnClickListener(new View.OnClickListener() {
