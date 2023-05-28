@@ -23,6 +23,18 @@
         android:theme="@style/Theme.MusicPlayerApp"
         tools:targetApi="31">
         <activity
+            android:name=".Class.DanhSachPlayListAdapter"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.DanhSachPlayListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.DanhSachAlbumActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.DanhSachChuDeActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activity.PlayNhacActivity"
             android:exported="true" />
         <activity
@@ -58,6 +70,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".Fragment.MusicService"
+            android:enabled="true" />
+
+        <receiver
+            android:name=".Class.NotificationReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="actionprevious" />
+                <action android:name="actionnext" />
+                <action android:name="actionplay" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

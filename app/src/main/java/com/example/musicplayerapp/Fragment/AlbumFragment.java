@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.musicplayerapp.Activity.DanhSachAlbumActivity;
 import com.example.musicplayerapp.Activity.DanhsachbaihatActivity;
 import com.example.musicplayerapp.Class.AlbumAdapter;
 import com.example.musicplayerapp.Model.APIService;
@@ -44,6 +45,13 @@ public class AlbumFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_album, container, false);
         recyclerView = view.findViewById(R.id.recyclerviewAlbum);
         txtxemthemalbum = view.findViewById(R.id.textviewxemthemAlbum);
+        txtxemthemalbum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DanhSachAlbumActivity.class);
+                startActivity(intent);
+            }
+        });
         GetData();
         return  view;
     }

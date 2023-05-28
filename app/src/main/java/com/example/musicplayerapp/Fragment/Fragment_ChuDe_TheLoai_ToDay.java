@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.musicplayerapp.Activity.DanhSachChuDeActivity;
 import com.example.musicplayerapp.Activity.DanhsachbaihatActivity;
 import com.example.musicplayerapp.Model.APIService;
 import com.example.musicplayerapp.Model.ChuDe;
@@ -46,6 +47,13 @@ public class Fragment_ChuDe_TheLoai_ToDay extends Fragment {
         view = inflater.inflate(R.layout.fragment_chu_de_the_loai_to_day, container, false);
         horizontalScrollView = view.findViewById(R.id.horizontalScrollview);
         txtxemthemchudetheloai = view.findViewById(R.id.textviewxemthem);
+        txtxemthemchudetheloai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DanhSachChuDeActivity.class);
+                startActivity(intent);
+            }
+        });
         GetData();
         return view;
     }

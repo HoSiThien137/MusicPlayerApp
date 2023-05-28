@@ -1,32 +1,73 @@
 package com.example.musicplayerapp.Model;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class BaiHat {
+public class BaiHat implements Parcelable {
 
     @SerializedName("IdBaiHat")
     @Expose
     private String idBaiHat;
-    @SerializedName("TheLoai")
+    @SerializedName("IdTheLoai")
     @Expose
     private String theLoai;
     @SerializedName("TenBaiHat")
     @Expose
     private String tenBaiHat;
-    @SerializedName("CaSi")
+    @SerializedName("TenCaSi")
     @Expose
     private String caSi;
-    @SerializedName("Hinh")
+    @SerializedName("HinhBaiHat")
     @Expose
     private String hinh;
-    @SerializedName("Link")
+    @SerializedName("LinkBaiHat")
     @Expose
     private String link;
     @SerializedName("Username")
     @Expose
     private String username;
+
+    protected BaiHat(Parcel in) {
+        idBaiHat = in.readString();
+        theLoai = in.readString();
+        tenBaiHat = in.readString();
+        caSi = in.readString();
+        hinh = in.readString();
+        link = in.readString();
+        username = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idBaiHat);
+        dest.writeString(theLoai);
+        dest.writeString(tenBaiHat);
+        dest.writeString(caSi);
+        dest.writeString(hinh);
+        dest.writeString(link);
+        dest.writeString(username);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<BaiHat> CREATOR = new Creator<BaiHat>() {
+        @Override
+        public BaiHat createFromParcel(Parcel in) {
+            return new BaiHat(in);
+        }
+
+        @Override
+        public BaiHat[] newArray(int size) {
+            return new BaiHat[size];
+        }
+    };
 
     public String getIdBaiHat() {
         return idBaiHat;
@@ -82,5 +123,4 @@ public class BaiHat {
     public void setUsername(String username) {
         this.username = username;
     }
-
 }
