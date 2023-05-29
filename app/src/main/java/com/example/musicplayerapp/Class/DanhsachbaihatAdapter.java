@@ -67,49 +67,43 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
             txtindex = itemView.findViewById(R.id.textviewdanhsachindex);
             txttenbaihat  = itemView.findViewById(R.id.textviewtenbaihat);
             imgluotthich = itemView.findViewById(R.id.imageviewluotthichdanhsachbaihat);
-            imgluotthich.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int i= getAdapterPosition();
-                    BaiHat baihat= mangbaihat.get(i);
-                    if (baihat.getUsername().equals(LoginActivity.user)){
-                        DataService dataService = APIService.getService();
-                        Call<Void> callback = dataService.DeleteYeuThich(Integer.parseInt(baihat.getIdBaiHat()) ,LoginActivity.user);
-                        callback.enqueue(new Callback<Void>() {
-                            @Override
-                            public void onResponse(Call<Void> call, Response<Void> response) {
-                                imgluotthich.setImageResource(R.drawable.baseline_favorite_black);
-                            }
+            imgluotthich.setOnClickListener(view -> {
+                int i= getAdapterPosition();
+                BaiHat baihat= mangbaihat.get(i);
+                if (baihat.getUsername().equals(LoginActivity.user)){
+                    DataService dataService = APIService.getService();
+                    Call<Void> callback = dataService.DeleteYeuThich(Integer.parseInt(baihat.getIdBaiHat()) ,LoginActivity.user);
+                    callback.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            imgluotthich.setImageResource(R.drawable.baseline_favorite_black);
+                        }
 
-                            @Override
-                            public void onFailure(Call<Void> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
 
-                            }
-                        });
-                    } else{
-                        DataService dataService = APIService.getService();
-                        Call<Void> callback = dataService.AddYeuThich(Integer.parseInt(baihat.getIdBaiHat()) ,LoginActivity.user);
-                        callback.enqueue(new Callback<Void>() {
-                            @Override
-                            public void onResponse(Call<Void> call, Response<Void> response) {
-                                imgluotthich.setImageResource(R.drawable.baseline_favorite_red);
-                            }
+                        }
+                    });
+                } else{
+                    DataService dataService = APIService.getService();
+                    Call<Void> callback = dataService.AddYeuThich(Integer.parseInt(baihat.getIdBaiHat()) ,LoginActivity.user);
+                    callback.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            imgluotthich.setImageResource(R.drawable.baseline_favorite_red);
+                        }
 
-                            @Override
-                            public void onFailure(Call<Void> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
 
-                            }
-                        });
-                    }
+                        }
+                    });
                 }
             });
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, PlayNhacActivity.class);
-                    intent.putExtra("cakhuc", mangbaihat.get(getPosition()));
-                    context.startActivity(intent);
-                }
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, PlayNhacActivity.class);
+                intent.putExtra("cakhuc", mangbaihat.get(getPosition()));
+                context.startActivity(intent);
             });
         }
     }

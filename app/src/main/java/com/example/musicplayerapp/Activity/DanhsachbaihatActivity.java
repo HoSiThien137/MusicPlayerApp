@@ -239,13 +239,10 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     }
     private void eventClick() {
         floatingActionButton.setEnabled(true);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DanhsachbaihatActivity.this, PlayNhacActivity.class);
-                intent.putExtra("cacbaihat", mangbaihat);
-                startActivity(intent);
-            }
+        floatingActionButton.setOnClickListener(v -> {
+            Intent intent = new Intent(DanhsachbaihatActivity.this, PlayNhacActivity.class);
+            intent.putExtra("cacbaihat", mangbaihat);
+            startActivity(intent);
         });
     }
 }

@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musicplayerapp.Activity.LoginActivity;
+import com.example.musicplayerapp.Activity.PlayNhacActivity;
 import com.example.musicplayerapp.Activity.PlayerActivity;
 import com.example.musicplayerapp.Model.APIService;
 import com.example.musicplayerapp.Model.BaiHat;
@@ -72,9 +73,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, PlayerActivity.class);
-                    //intent.putExtra("cakhuc",mangBaiHat.get(getAdapterPosition()));
-                    //context.startActivities(intent);
+                    
                 }
             });
             imgFavorite.setOnClickListener(new View.OnClickListener(){
