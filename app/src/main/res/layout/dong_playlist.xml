@@ -2,23 +2,18 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
+    android:layout_marginTop="9dp"
     android:layout_width="match_parent">
 
     <ImageView
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="5dp"
         android:id="@+id/imageviewbackgroundplaylist"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="150dp"/>
+        android:layout_height="160dp"/>
     <View
         android:background="@drawable/gredient_bg"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="150dp"/>
+        android:layout_height="160dp"/>
     <ImageView
         android:id="@+id/imageviewplaylist"
         android:layout_alignBottom="@id/imageviewbackgroundplaylist"
@@ -26,7 +21,7 @@
         android:layout_marginBottom="10dp"
         android:elevation="6dp"
         android:scaleType="fitXY"
-        android:layout_width="50dp"
+        android:layout_width="20dp"
         android:layout_height="50dp"/>
     <TextView
         android:textSize="20sp"

@@ -54,6 +54,8 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     TheLoai theLoai;
     ChuDe chuDe;
     Album album;
+    String user;
+    TextView tvNoData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +81,34 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             setValueInview(album.getTenAlbum(), album.getHinhAlbum());
             GetDataAlbum(album.getIdAlbum());
         }
+        else if(user!=null){
+            setValueInview("Bài hát yêu thích", "https://avatar-nct.nixcdn.com/topic/share/2016/08/23/a/7/4/b/1471930023672.jpg");
+            GetDataBaiHatYeuThich();
+        }
     }
+    private void GetDataBaiHatYeuThich() {
+        DataService dataService = APIService.getService();
+        Call<List<BaiHat>> callback = dataService.GetDanhSachBaiHatYeuThich(user,"yeuthich");
+        callback.enqueue(new Callback<List<BaiHat>>() {
+            @Override
+            public void onResponse(Call<List<BaiHat>> call, Response<List<BaiHat>> response) {
+                mangbaihat = (ArrayList<BaiHat>) response.body();
+                if (mangbaihat.size()>0){
+                    danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this, mangbaihat);
+                    recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                    recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+                }else{
+                    tvNoData.setVisibility(View.VISIBLE);
+                    recyclerViewdanhsachbaihat.setVisibility(View.GONE);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<List<BaiHat>> call, Throwable t) {
+                Toast.makeText(DanhsachbaihatActivity.this, "thất bại", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void GetDataAlbum(String IdAlbum) {
         DataService dataService = APIService.getService();
         Call<List<BaiHat>> callback = dataService.GetDanhSachBaiHatAlbum(IdAlbum,LoginActivity.user);
@@ -180,6 +208,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         floatingActionButton.setEnabled(false);
     }
     private void anhxa() {
+        tvNoData = findViewById(R.id.tvNoDataDS);
         coordinatorLayout = findViewById(R.id.coordinatorlayout);
         collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar);
         toolbar = findViewById(R.id.toolbardanhsach);
@@ -202,6 +231,9 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             }
             else if(intent.hasExtra("idalbum")){
                 album = (Album) intent.getSerializableExtra("idalbum");
+            }
+            if(intent.hasExtra("iduser")){
+                user = (String) intent.getSerializableExtra("iduser");
             }
         }
     }

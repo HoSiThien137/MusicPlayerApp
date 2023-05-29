@@ -33,10 +33,19 @@ public class Fragment_dia_nhac extends Fragment {
         objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
         objectAnimator.setRepeatMode(ValueAnimator.RESTART);
         objectAnimator.setInterpolator(new LinearInterpolator());
+        objectAnimator.start();
         return view;
 
     }
+    public void PauseOrPlay(String s){
+        if (s=="pause"){
+            objectAnimator.pause();
+        }
+        if (s=="play"){
+            objectAnimator.start();
 
+        }
+    }
     public void Playnhac(final String hinhanh) {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

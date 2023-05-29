@@ -86,8 +86,10 @@ public class PlayNhacActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(mediaPlayer.isPlaying()){
                     mediaPlayer.pause();
+                    fragment_dia_nhac.PauseOrPlay("pause");
                     imgplay.setImageResource(R.drawable.baseline_play_circle);
                 }else{
+                    fragment_dia_nhac.PauseOrPlay("play");
                     mediaPlayer.start();
                     imgplay.setImageResource(R.drawable.baseline_stop_circle);
                 }
@@ -185,7 +187,7 @@ public class PlayNhacActivity extends AppCompatActivity {
                         imgpre.setClickable(true);
                         imgnext.setClickable(true);
                     }
-                }, 5000);
+                }, 1000);
             }
         });
         imgpre.setOnClickListener(new View.OnClickListener() {
@@ -225,7 +227,7 @@ public class PlayNhacActivity extends AppCompatActivity {
                         imgpre.setClickable(true);
                         imgnext.setClickable(true);
                     }
-                }, 5000);
+                }, 1000);
             }
         });
     }
@@ -378,7 +380,7 @@ public class PlayNhacActivity extends AppCompatActivity {
                             imgpre.setClickable(true);
                             imgnext.setClickable(true);
                         }
-                    }, 5000);
+                    }, 1000);
                     next = false;
                     handler1.removeCallbacks(this);
                 }else{

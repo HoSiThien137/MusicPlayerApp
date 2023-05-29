@@ -22,6 +22,12 @@ public interface DataService {
     @GET("album.php")
     Call<List<Album>> GetAlbumHot();
     @FormUrlEncoded
+    @POST("search.php")
+    Call<List<BaiHatSearch>> GetRandomSong(@Field("random") String random,@Field("user") String user);
+    @FormUrlEncoded
+    @POST("DanhSachBaiHat.php")
+    Call<List<BaiHat>> GetDanhSachBaiHatYeuThich(@Field("user") String user,@Field("yeuthich") String yeuthich);
+    @FormUrlEncoded
     @POST("DanhSachBaiHat.php")
     Call<List<BaiHat>> GetDanhSachBaiHatAlbum(@Field("IdAlbum") String IdAlbum, @Field("user") String user);
     @FormUrlEncoded

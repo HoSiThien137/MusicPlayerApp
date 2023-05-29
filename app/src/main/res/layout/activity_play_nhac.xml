@@ -7,11 +7,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gredient_bg"
+    android:background="@drawable/gradient_background_1"
     tools:context=".Activity.PlayNhacActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarplaynhac"
         android:layout_width="match_parent"
+        app:titleTextColor="@color/white"
         android:layout_height="?attr/actionBarSize">
     </androidx.appcompat.widget.Toolbar>
     <androidx.viewpager.widget.ViewPager
