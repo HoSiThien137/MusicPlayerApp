@@ -9,6 +9,9 @@ public class TheLoai implements Serializable {
     @SerializedName("IdTheLoai")
     @Expose
     private String idTheLoai;
+    @SerializedName("IdKeyChuDe")
+    @Expose
+    private String idKeyChuDe;
     @SerializedName("TenTheLoai")
     @Expose
     private String tenTheLoai;
@@ -21,6 +24,14 @@ public class TheLoai implements Serializable {
 
     public void setIdTheLoai(String idTheLoai) {
         this.idTheLoai = idTheLoai;
+    }
+
+    public String getIdKeyChuDe() {
+        return idKeyChuDe;
+    }
+
+    public void setIdKeyChuDe(String idKeyChuDe) {
+        this.idKeyChuDe = idKeyChuDe;
     }
     public String getTenTheLoai() {
         return tenTheLoai;

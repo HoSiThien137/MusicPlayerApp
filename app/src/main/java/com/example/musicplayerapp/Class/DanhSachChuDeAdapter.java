@@ -1,6 +1,7 @@
 package com.example.musicplayerapp.Class;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.musicplayerapp.Activity.DanhSachTheLoaiTheoChuDeActivity;
 import com.example.musicplayerapp.Model.ChuDe;
 import com.example.musicplayerapp.R;
 import com.squareup.picasso.Picasso;
@@ -50,6 +52,14 @@ public class DanhSachChuDeAdapter extends RecyclerView.Adapter<DanhSachChuDeAdap
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgchude = itemView.findViewById(R.id.imageviewdongcacchude);
+            imgchude.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, DanhSachTheLoaiTheoChuDeActivity.class);
+                    intent.putExtra("chude",mangchude.get(getPosition()));
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }
