@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musicplayerapp.Activity.LoginActivity;
+import com.example.musicplayerapp.Activity.PlayNhacActivity;
 import com.example.musicplayerapp.Activity.PlayerActivity;
 import com.example.musicplayerapp.Model.APIService;
 import com.example.musicplayerapp.Model.BaiHat;
@@ -100,15 +101,14 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
                             }
                         });
                     }
-
-                    itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(context, PlayerActivity.class);
-                            intent.putExtra("cakhuc", (Serializable) mangbaihat.get(getPosition()));
-                            context.startActivity(intent);
-                        }
-                    });
+                }
+            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, PlayNhacActivity.class);
+                    intent.putExtra("cakhuc", mangbaihat.get(getPosition()));
+                    context.startActivity(intent);
                 }
             });
         }

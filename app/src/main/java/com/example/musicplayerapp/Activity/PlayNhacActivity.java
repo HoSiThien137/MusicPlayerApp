@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -48,12 +50,18 @@ public class PlayNhacActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setFullScreen();
         setContentView(R.layout.activity_play_nhac);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         GetDataFromIntent();
         init();
         eventClick();
+    }
+    private void setFullScreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void eventClick() {
@@ -228,6 +236,7 @@ public class PlayNhacActivity extends AppCompatActivity {
         if(intent != null){
             if(intent.hasExtra("cakhuc")){
                 BaiHat baiHat = intent.getParcelableExtra("cakhuc");
+                Toast.makeText(this, baiHat.getTenBaiHat(), Toast.LENGTH_SHORT).show();
                 mangbaihat.add(baiHat);
             }
             if(intent.hasExtra("cacbaihat")){

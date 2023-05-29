@@ -28,6 +28,7 @@ import androidx.core.app.NotificationCompat;
 import com.example.musicplayerapp.Activity.PlayerActivity;
 import com.example.musicplayerapp.Class.NotificationReceiver;
 import com.example.musicplayerapp.Model.ActionPlaying;
+import com.example.musicplayerapp.Model.BaiHat;
 import com.example.musicplayerapp.R;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
     IBinder mBinder = new MyBinder();
     MediaPlayer mediaPlayer;
     ArrayList<MusicFiles> musicFiles = new ArrayList<>();
+    //ArrayList<BaiHat> baihatFiles = new ArrayList<>();
     Uri uri;
     int position = -1;
     ActionPlaying actionPlaying;
@@ -60,9 +62,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
     }
 
     public class MyBinder extends Binder{
-        public MusicService getService(){
-            return MusicService.this;
-        }
+        public MusicService getService(){return MusicService.this;}
     }
 
     @Override

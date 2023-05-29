@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.musicplayerapp.Activity.PlayerActivity;
 import com.example.musicplayerapp.Fragment.MusicFiles;
+import com.example.musicplayerapp.Model.BaiHat;
 import com.example.musicplayerapp.R;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyVieHolder> {
     private Context mContext;
     private ArrayList<MusicFiles> mFiles;
+    private ArrayList<BaiHat> bFiles;
 
     public MusicAdapter(Context mContext, ArrayList<MusicFiles> mFiles){
         this.mFiles =  mFiles;
