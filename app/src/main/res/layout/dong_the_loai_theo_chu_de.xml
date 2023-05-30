@@ -2,14 +2,17 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="9dp"
-    android:layout_margin="5dp"
+    android:layout_margin="7dp"
+    android:layout_marginBottom="15dp"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
         <FrameLayout
             android:id="@+id/framelayouttheloaitheochude"
             android:layout_width="wrap_content"
@@ -34,19 +37,12 @@
             android:paddingRight="5dp"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:paddingTop="5dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
             android:paddingLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <TextView
-            android:text="Various Artists"
-            android:textSize="13sp"
-            android:paddingRight="5dp"
-            android:paddingTop="5dp"
-            android:paddingLeft="5dp"
-            android:textAlignment="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

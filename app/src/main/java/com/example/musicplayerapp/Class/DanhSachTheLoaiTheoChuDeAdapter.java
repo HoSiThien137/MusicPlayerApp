@@ -53,6 +53,7 @@ public class DanhSachTheLoaiTheoChuDeAdapter extends RecyclerView.Adapter<DanhSa
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imghinhnen;
         TextView txttentheloai;
+
         public ViewHolder(View itemView){
             super(itemView);
             imghinhnen = itemView.findViewById(R.id.imageviewtheloaitheochude);

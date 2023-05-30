@@ -42,6 +42,7 @@ public class DanhSachAlbumAdapter extends RecyclerView.Adapter<DanhSachAlbumAdap
         Album album = albumArrayList.get(position);
         Picasso.get().load(album.getHinhAlbum()).into(holder.imgallalbum);
         holder.txtallalbum.setText(album.getTenAlbum());
+        holder.tvtencasi.setText(album.getTenCaSiAlbum());
     }
 
 
@@ -53,10 +54,12 @@ public class DanhSachAlbumAdapter extends RecyclerView.Adapter<DanhSachAlbumAdap
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imgallalbum;
         TextView txtallalbum;
+        TextView tvtencasi;
         public ViewHolder(View itemView){
             super(itemView);
             imgallalbum = itemView.findViewById(R.id.imageviewalbum);
             txtallalbum = itemView.findViewById(R.id.textviewtenallalbum);
+            tvtencasi = itemView.findViewById(R.id.textviewtencasialbum);
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, DanhsachbaihatActivity.class);
                 intent.putExtra("idalbum", albumArrayList.get(getPosition()));
