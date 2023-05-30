@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:src="@drawable/ic_launcher_background"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:id="@+id/imageviewtheloaitheochude"
                 android:layout_width="180dp"
                 android:layout_height="180dp" />
