@@ -45,12 +45,9 @@ public class PlayListFragment extends Fragment {
         lvplaylist = view.findViewById(R.id.listviewplaylist);
         txttitleplaylist = view.findViewById(R.id.textviewtitleplaylist);
         txtviewxemthemplaylist = view.findViewById(R.id.textviewmoreplaylist);
-        txtviewxemthemplaylist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DanhSachPlayListActivity.class);
-                startActivity(intent);
-            }
+        txtviewxemthemplaylist.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), DanhSachPlayListActivity.class);
+            startActivity(intent);
         });
         GetData();
         return view;
@@ -67,13 +64,10 @@ public class PlayListFragment extends Fragment {
                 playListAdapter = new PlayListAdapter(getActivity(), android.R.layout.simple_list_item_1, mangplaylist);
                 lvplaylist.setAdapter(playListAdapter);
                 setListViewHeightBasedOnChildren(lvplaylist);
-                lvplaylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent = new Intent(getActivity(), DanhsachbaihatActivity.class);
-                        intent.putExtra("itemplaylist", mangplaylist.get(position));
-                        startActivity(intent);
-                    }
+                lvplaylist.setOnItemClickListener((parent, view, position, id) -> {
+                    Intent intent = new Intent(getActivity(), DanhsachbaihatActivity.class);
+                    intent.putExtra("itemplaylist", mangplaylist.get(position));
+                    startActivity(intent);
                 });
             }
 

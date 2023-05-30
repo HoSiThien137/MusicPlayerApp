@@ -48,11 +48,6 @@ public class Fragment_dia_nhac extends Fragment {
     }
     public void Playnhac(final String hinhanh) {
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Picasso.get().load(hinhanh).into(circleImageView);
-            }
-        }, 300);
+        handler.postDelayed(() -> Picasso.get().load(hinhanh).into(circleImageView), 300);
     }
 }

@@ -145,50 +145,47 @@ public class PlayNhacActivity extends AppCompatActivity {
                 mediaPlayer.seekTo(seekBar.getProgress());
             }
         });
-        imgnext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mangbaihat.size() >0){
-                    if(mediaPlayer.isPlaying() || mediaPlayer != null){
-                        mediaPlayer.stop();
-                        mediaPlayer.release();
-                        mediaPlayer = null;
-                    }
-                    if(position < (mangbaihat.size())){
-                        imgplay.setImageResource(R.drawable.baseline_stop_circle);
-                        position++;
-                        if(repeat == true){
-                            if(position == 0)position = mangbaihat.size();
-                            position -=1;
-                        }
-                        if(checkrandom == true){
-                            Random random = new Random();
-                            int index = random.nextInt(mangbaihat.size());
-                            if(index == position){
-                                position = index - 1;
-                            }
-                            position = index;
-                        }
-                        if(position > mangbaihat.size() - 1){
-                            position = 0;
-                        }
-                        new PlayMp3().execute(mangbaihat.get(position).getLink());
-                        fragment_dia_nhac.Playnhac(mangbaihat.get(position).getHinh());
-                        getSupportActionBar().setTitle((mangbaihat).get(position).getTenBaiHat());
-                        UpdateTime();
-                    }
+        imgnext.setOnClickListener(v -> {
+            if (mangbaihat.size() >0){
+                if(mediaPlayer.isPlaying() || mediaPlayer != null){
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+                    mediaPlayer = null;
                 }
-                imgpre.setClickable(false);
-                imgnext.setClickable(false);
-                Handler handler1 = new Handler();
-                handler1.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgpre.setClickable(true);
-                        imgnext.setClickable(true);
+                if(position < (mangbaihat.size())){
+                    imgplay.setImageResource(R.drawable.baseline_stop_circle);
+                    position++;
+                    if(repeat == true){
+                        if(position == 0)position = mangbaihat.size();
+                        position -=1;
                     }
-                }, 1000);
+                    if(checkrandom == true){
+                        Random random = new Random();
+                        int index = random.nextInt(mangbaihat.size());
+                        if(index == position){
+                            position = index - 1;
+                        }
+                        position = index;
+                    }
+                    if(position > mangbaihat.size() - 1){
+                        position = 0;
+                    }
+                    new PlayMp3().execute(mangbaihat.get(position).getLink());
+                    fragment_dia_nhac.Playnhac(mangbaihat.get(position).getHinh());
+                    getSupportActionBar().setTitle((mangbaihat).get(position).getTenBaiHat());
+                    UpdateTime();
+                }
             }
+            imgpre.setClickable(false);
+            imgnext.setClickable(false);
+            Handler handler1 = new Handler();
+            handler1.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    imgpre.setClickable(true);
+                    imgnext.setClickable(true);
+                }
+            }, 1000);
         });
         imgpre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,12 +218,9 @@ public class PlayNhacActivity extends AppCompatActivity {
                 imgpre.setClickable(false);
                 imgnext.setClickable(false);
                 Handler handler1 = new Handler();
-                handler1.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgpre.setClickable(true);
-                        imgnext.setClickable(true);
-                    }
+                handler1.postDelayed(() -> {
+                    imgpre.setClickable(true);
+                    imgnext.setClickable(true);
                 }, 1000);
             }
         });
@@ -261,13 +255,10 @@ public class PlayNhacActivity extends AppCompatActivity {
         viewPagerplaynhac = findViewById(R.id.viewpagerplaynhac);
         setSupportActionBar(toolbarplaynhac);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbarplaynhac.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                mediaPlayer.stop();
-                mangbaihat.clear();
-            }
+        toolbarplaynhac.setNavigationOnClickListener(v -> {
+            finish();
+            mediaPlayer.stop();
+            mangbaihat.clear();
         });
         toolbarplaynhac.setTitleTextColor(Color.WHITE);
         fragment_dia_nhac = new Fragment_dia_nhac();
@@ -329,17 +320,13 @@ public class PlayNhacActivity extends AppCompatActivity {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
                     txtTimesong.setText(simpleDateFormat.format(mediaPlayer.getCurrentPosition()));
                     handler.postDelayed(this, 300);
-                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            next = true;
-                            try{
-                                Thread.sleep(1000);
-                            }catch (InterruptedException e){
-                                e.printStackTrace();
-                            }
+                    mediaPlayer.setOnCompletionListener(mp -> {
+                        next = true;
+                        try{
+                            Thread.sleep(1000);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
                         }
-
                     });
                 }
             }

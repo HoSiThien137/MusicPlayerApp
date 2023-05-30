@@ -8,7 +8,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class BaiHat implements Parcelable {
-
     @SerializedName("IdBaiHat")
     @Expose
     private String idBaiHat;
@@ -30,6 +29,62 @@ public class BaiHat implements Parcelable {
     @SerializedName("Username")
     @Expose
     private String username;
+
+    public String getIdBaiHat() {
+        return idBaiHat;
+    }
+
+    public void setIdBaiHat(String idBaiHat) {
+        this.idBaiHat = idBaiHat;
+    }
+
+    public String getIdTheLoai() {
+        return theLoai;
+    }
+
+    public void setIdTheLoai(String theLoai) {
+        this.theLoai = theLoai;
+    }
+
+    public String getTenBaiHat() {
+        return tenBaiHat;
+    }
+
+    public void setTenBaiHat(String tenBaiHat) {
+        this.tenBaiHat = tenBaiHat;
+    }
+
+    public String getCaSi() {
+        return caSi;
+    }
+
+    public void setTenCaSi(String tenCaSi) {
+        this.caSi = tenCaSi;
+    }
+
+    public String getHinh() {
+        return hinh;
+    }
+
+    public void setHinhBaiHat(String hinhBaiHat) {
+        this.hinh = hinhBaiHat;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLinkBaiHat(String linkBaiHat) {
+        this.link = linkBaiHat;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     protected BaiHat(Parcel in) {
         idBaiHat = in.readString();
@@ -68,59 +123,4 @@ public class BaiHat implements Parcelable {
             return new BaiHat[size];
         }
     };
-
-    public String getIdBaiHat() {
-        return idBaiHat;
-    }
-
-    public void setIdBaiHat(String idBaiHat) {
-        this.idBaiHat = idBaiHat;
-    }
-
-    public String getTheLoai() {
-        return theLoai;
-    }
-
-    public void setTheLoai(String theLoai) {
-        this.theLoai = theLoai;
-    }
-
-    public String getTenBaiHat() {
-        return tenBaiHat;
-    }
-
-    public void setTenBaiHat(String tenBaiHat) {
-        this.tenBaiHat = tenBaiHat;
-    }
-
-    public String getCaSi() {
-        return caSi;
-    }
-
-    public void setCaSi(String caSi) {
-        this.caSi = caSi;
-    }
-
-    public String getHinh() {
-        return hinh;
-    }
-
-    public void setHinh(String hinh) {
-        this.hinh = hinh;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

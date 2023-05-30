@@ -23,7 +23,7 @@ public interface DataService {
     Call<List<Album>> GetAlbumHot();
     @FormUrlEncoded
     @POST("search.php")
-    Call<List<BaiHatSearch>> GetRandomSong(@Field("random") String random,@Field("user") String user);
+    Call<List<BaiHat>> GetRandomSong(@Field("random") String random,@Field("user") String user);
     @FormUrlEncoded
     @POST("DanhSachBaiHat.php")
     Call<List<BaiHat>> GetDanhSachBaiHatYeuThich(@Field("user") String user,@Field("yeuthich") String yeuthich);
@@ -41,7 +41,7 @@ public interface DataService {
     Call<List<BaiHat>> GetDanhSachBaiHatChuDe(@Field("IdChuDe") String IdChuDe, @Field("user") String user);
     @FormUrlEncoded
     @POST("search.php")
-    Call<List<BaiHatSearch>> GetSearchBaiHat (@Field("tukhoa") String tukhoa, @Field("user") String user);
+    Call<List<BaiHat>> GetSearchBaiHat (@Field("tukhoa") String tukhoa, @Field("user") String user);
 
     @FormUrlEncoded
     @POST("deleteYeuThich.php")

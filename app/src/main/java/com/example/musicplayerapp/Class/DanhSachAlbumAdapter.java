@@ -57,13 +57,10 @@ public class DanhSachAlbumAdapter extends RecyclerView.Adapter<DanhSachAlbumAdap
             super(itemView);
             imgallalbum = itemView.findViewById(R.id.imageviewalbum);
             txtallalbum = itemView.findViewById(R.id.textviewtenallalbum);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, DanhsachbaihatActivity.class);
-                    intent.putExtra("idalbum", albumArrayList.get(getPosition()));
-                    context.startActivity(intent);
-                }
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, DanhsachbaihatActivity.class);
+                intent.putExtra("idalbum", albumArrayList.get(getPosition()));
+                context.startActivity(intent);
             });
         }
     }

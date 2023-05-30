@@ -13,14 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musicplayerapp.Activity.LoginActivity;
 import com.example.musicplayerapp.Activity.PlayNhacActivity;
-import com.example.musicplayerapp.Activity.PlayerActivity;
 import com.example.musicplayerapp.Model.APIService;
 import com.example.musicplayerapp.Model.BaiHat;
-import com.example.musicplayerapp.Model.BaiHatSearch;
 import com.example.musicplayerapp.Model.DataService;
 import com.example.musicplayerapp.R;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import retrofit2.Call;

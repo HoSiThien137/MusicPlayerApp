@@ -64,11 +64,6 @@ public class DanhSachChuDeActivity extends AppCompatActivity {
         setSupportActionBar(toolbartatcachude);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Tất Cả Chủ Đề");
-        toolbartatcachude.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolbartatcachude.setNavigationOnClickListener(v -> finish());
     }
 }

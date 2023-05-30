@@ -73,7 +73,7 @@ public class Fragment_ChuDe_TheLoai_ToDay extends Fragment {
                     LinearLayout linearLayout = new LinearLayout(getActivity());
                     linearLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-                    LinearLayout.LayoutParams layout = new LinearLayout.LayoutParams(580, 340);
+                    LinearLayout.LayoutParams layout = new LinearLayout.LayoutParams(550, 309);
                     layout.setMargins(10,20,10,30);
                     for(int i = 0 ; i<chuDeArrayList.size(); i++){
                         CardView cardView = new CardView(getActivity());

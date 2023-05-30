@@ -100,30 +100,24 @@ public class PlayerActivity extends AppCompatActivity
 
             }
         });
-        shuffleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (shuffleBoolean){
-                    shuffleBoolean = false;
-                    shuffleBtn.setImageResource(R.drawable.baseline_shuffle);
-                }
-                else {
-                    shuffleBoolean = true;
-                    shuffleBtn.setImageResource(R.drawable.baseline_shuffle_on);
-                }
+        shuffleBtn.setOnClickListener(v -> {
+            if (shuffleBoolean){
+                shuffleBoolean = false;
+                shuffleBtn.setImageResource(R.drawable.baseline_shuffle);
+            }
+            else {
+                shuffleBoolean = true;
+                shuffleBtn.setImageResource(R.drawable.baseline_shuffle_on);
             }
         });
-        repeatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(repeatBoolean){
-                    repeatBoolean = false;
-                    repeatBtn.setImageResource(R.drawable.baseline_repeat);
-                }
-                else {
-                    repeatBoolean = true;
-                    repeatBtn.setImageResource(R.drawable.baseline_repeat_on);
-                }
+        repeatBtn.setOnClickListener(v -> {
+            if(repeatBoolean){
+                repeatBoolean = false;
+                repeatBtn.setImageResource(R.drawable.baseline_repeat);
+            }
+            else {
+                repeatBoolean = true;
+                repeatBtn.setImageResource(R.drawable.baseline_repeat_on);
             }
         });
     }
@@ -155,12 +149,7 @@ public class PlayerActivity extends AppCompatActivity
             @Override
             public void run(){
                 super.run();
-                prevBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        prevBtnClicked();
-                    }
-                });
+                prevBtn.setOnClickListener(v -> prevBtnClicked());
             }
         };
         prevThread.start();
@@ -225,12 +214,7 @@ public class PlayerActivity extends AppCompatActivity
             @Override
             public void run(){
                 super.run();
-                nextBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        nextBtnClicked();
-                    }
-                });
+                nextBtn.setOnClickListener(v -> nextBtnClicked());
             }
         };
         nextThread.start();
@@ -309,12 +293,7 @@ public class PlayerActivity extends AppCompatActivity
             @Override
             public void run(){
                 super.run();
-                playPauseBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        playPauseBtnClicked();
-                    }
-                });
+                playPauseBtn.setOnClickListener(v -> playPauseBtnClicked());
             }
         };
         playThread.start();
@@ -407,37 +386,34 @@ public class PlayerActivity extends AppCompatActivity
         if(art != null) {
             bitmap = BitmapFactory.decodeByteArray(art, 0, art.length);
             ImageAnimation(this, cover_art, bitmap);
-            Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-                @Override
-                public void onGenerated(@Nullable Palette palette) {
-                    Palette.Swatch swatch = palette.getDominantSwatch();
-                    if (swatch != null){
-                        ImageView gredient = findViewById(R.id.imageViewGredient);
-                        RelativeLayout mContainer = findViewById(R.id.mContaier);
-                        gredient.setBackgroundResource(R.drawable.gredient_bg);
-                        mContainer.setBackgroundResource(R.drawable.main_bg);
-                        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
-                                new int[]{swatch.getRgb(), 0x00000000});
-                        gredient.setBackground(gradientDrawable);
-                        GradientDrawable gradientDrawableBg = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
-                                new int[]{swatch.getRgb(), swatch.getRgb()});
-                        mContainer.setBackground(gradientDrawableBg);
-                        song_name.setTextColor(swatch.getTitleTextColor());
-                        artist_name.setTextColor(swatch.getBodyTextColor());
-                    }else {
-                        ImageView gredient = findViewById(R.id.imageViewGredient);
-                        RelativeLayout mContainer = findViewById(R.id.mContaier);
-                        gredient.setBackgroundResource(R.drawable.gredient_bg);
-                        mContainer.setBackgroundResource(R.drawable.main_bg);
-                        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
-                                new int[]{0xff000000, 0x00000000});
-                        gredient.setBackground(gradientDrawable);
-                        GradientDrawable gradientDrawableBg = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
-                                new int[]{0xff000000, 0xff000000});
-                        mContainer.setBackground(gradientDrawableBg);
-                        song_name.setTextColor(Color.WHITE);
-                        artist_name.setTextColor(Color.DKGRAY);
-                    }
+            Palette.from(bitmap).generate(palette -> {
+                Palette.Swatch swatch = palette.getDominantSwatch();
+                if (swatch != null){
+                    ImageView gredient = findViewById(R.id.imageViewGredient);
+                    RelativeLayout mContainer = findViewById(R.id.mContaier);
+                    gredient.setBackgroundResource(R.drawable.gredient_bg);
+                    mContainer.setBackgroundResource(R.drawable.main_bg);
+                    GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                            new int[]{swatch.getRgb(), 0x00000000});
+                    gredient.setBackground(gradientDrawable);
+                    GradientDrawable gradientDrawableBg = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                            new int[]{swatch.getRgb(), swatch.getRgb()});
+                    mContainer.setBackground(gradientDrawableBg);
+                    song_name.setTextColor(swatch.getTitleTextColor());
+                    artist_name.setTextColor(swatch.getBodyTextColor());
+                }else {
+                    ImageView gredient = findViewById(R.id.imageViewGredient);
+                    RelativeLayout mContainer = findViewById(R.id.mContaier);
+                    gredient.setBackgroundResource(R.drawable.gredient_bg);
+                    mContainer.setBackgroundResource(R.drawable.main_bg);
+                    GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                            new int[]{0xff000000, 0x00000000});
+                    gredient.setBackground(gradientDrawable);
+                    GradientDrawable gradientDrawableBg = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                            new int[]{0xff000000, 0xff000000});
+                    mContainer.setBackground(gradientDrawableBg);
+                    song_name.setTextColor(Color.WHITE);
+                    artist_name.setTextColor(Color.DKGRAY);
                 }
             });
         }else {

@@ -57,13 +57,10 @@ public class DanhSachPlayListAdapter extends RecyclerView.Adapter<DanhSachPlayLi
             super(itemView);
             imghinhnen = itemView.findViewById(R.id.imageviewdanhsachplaylist);
             txttenplaylist = itemView.findViewById(R.id.textviewtendanhsachplaylist);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, DanhsachbaihatActivity.class);
-                    intent.putExtra("itemplaylist",mangplaylist.get(getPosition()));
-                    context.startActivity(intent);
-                }
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, DanhsachbaihatActivity.class);
+                intent.putExtra("itemplaylist",mangplaylist.get(getPosition()));
+                context.startActivity(intent);
             });
 
         }

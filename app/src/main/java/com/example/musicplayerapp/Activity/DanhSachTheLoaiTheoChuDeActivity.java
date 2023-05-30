@@ -68,12 +68,7 @@ public class DanhSachTheLoaiTheoChuDeActivity extends AppCompatActivity {
         setSupportActionBar(toolbartheloaitheochude);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(chuDe.getTenChuDe());
-        toolbartheloaitheochude.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolbartheloaitheochude.setNavigationOnClickListener(v -> finish());
     }
 
 

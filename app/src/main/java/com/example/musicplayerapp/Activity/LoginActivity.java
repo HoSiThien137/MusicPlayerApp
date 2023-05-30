@@ -41,31 +41,25 @@ public class LoginActivity extends AppCompatActivity {
         login_button = findViewById(R.id.login_button);
 
         // Thêm sự kiện click vào TextView signupRedirectText
-        signupRedirectText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Chuyển sang trang SignUpActivity
-                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-            }
+        signupRedirectText.setOnClickListener(v -> {
+            // Chuyển sang trang SignUpActivity
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
         });
 
 
         // Thêm sự kiện click vào Button login_button
-        login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Xử lý đăng nhập
-                String username = login_username.getText().toString();
-                String password = login_password.getText().toString();
+        login_button.setOnClickListener(v -> {
+            // Xử lý đăng nhập
+            String username = login_username.getText().toString();
+            String password = login_password.getText().toString();
 
-                // Gọi phương thức kiểm tra đăng nhập
-                 if (performLogin(username, password)) {
-                    // Đăng nhập thành công
-                     // Đóng Activity hiện tại (LoginActivity)
-                     finish();
-                }
-
+            // Gọi phương thức kiểm tra đăng nhập
+             if (performLogin(username, password)) {
+                // Đăng nhập thành công
+                 // Đóng Activity hiện tại (LoginActivity)
+                 finish();
             }
+
         });
     }
 
@@ -75,30 +69,22 @@ public class LoginActivity extends AppCompatActivity {
         final boolean isLoginSuccessful = false;
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (response.equals("success")) {
-                            boolean isLoginSucessful = true;
-                            // Đăng nhập thành công
-                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                            user = login_username.getText().toString().trim();
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
+                response -> {
+                    if (response.equals("success")) {
+                        boolean isLoginSucessful = true;
+                        // Đăng nhập thành công
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        user = login_username.getText().toString().trim();
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        startActivity(intent);
 
 
-                        } else {
-                            // Đăng nhập thất bại
-                            Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
-                        }
+                    } else {
+                        // Đăng nhập thất bại
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
-                    }
-                }) {
+                error -> Toast.makeText(LoginActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();

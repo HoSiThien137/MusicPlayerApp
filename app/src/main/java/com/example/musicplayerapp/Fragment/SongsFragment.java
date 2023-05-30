@@ -57,7 +57,6 @@ public class SongsFragment extends Fragment {
             @Override
             public void onResponse(Call<List<BaiHat>> call, Response<List<BaiHat>> response) {
                 ArrayList<BaiHat> baihat = (ArrayList<BaiHat>) response.body();
-                Log.d("BBB", baihat.get(0).getTenBaiHat());
             }
 
             @Override

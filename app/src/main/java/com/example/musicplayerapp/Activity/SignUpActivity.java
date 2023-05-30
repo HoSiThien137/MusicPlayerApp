@@ -43,28 +43,20 @@ public class SignUpActivity extends AppCompatActivity {
         signup_button = findViewById(R.id.signup_button);
         loginRedirectText = findViewById(R.id.loginRedirectText);
 
-        signup_button.setOnClickListener(new View.OnClickListener() {
-            @Override
+        signup_button.setOnClickListener(v -> {
+                String fullname = signup_fullname.getText().toString();
+                String phone = signup_phonenumber.getText().toString();
+                String username = signup_username.getText().toString();
+                String password = signup_password.getText().toString();
 
-
-            public void onClick(View v) {
-                    String fullname = signup_fullname.getText().toString();
-                    String phone = signup_phonenumber.getText().toString();
-                    String username = signup_username.getText().toString();
-                    String password = signup_password.getText().toString();
-
-                    //Đăng ký tài khoản
-                    performSignUp(fullname, phone, username, password);
-            }
+                //Đăng ký tài khoản
+                performSignUp(fullname, phone, username, password);
         });
-        loginRedirectText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Chuyển đến màn hình đăng nhập
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        loginRedirectText.setOnClickListener(v -> {
+            // Chuyển đến màn hình đăng nhập
+            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
 
@@ -99,12 +91,9 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            // Xử lý lỗi khi kết nối đến server
-                            Toast.makeText(SignUpActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
-                        }
+                    error -> {
+                        // Xử lý lỗi khi kết nối đến server
+                        Toast.makeText(SignUpActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
                     }) {
                 @Override
                 protected Map<String, String> getParams() {

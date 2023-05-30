@@ -18,7 +18,6 @@ import com.example.musicplayerapp.Activity.PlayNhacActivity;
 import com.example.musicplayerapp.Activity.PlayerActivity;
 import com.example.musicplayerapp.Model.APIService;
 import com.example.musicplayerapp.Model.BaiHat;
-import com.example.musicplayerapp.Model.BaiHatSearch;
 import com.example.musicplayerapp.Model.DataService;
 import com.example.musicplayerapp.R;
 import com.squareup.picasso.Picasso;
@@ -32,8 +31,8 @@ import retrofit2.Response;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder>{
     Context context;
-    ArrayList<BaiHatSearch> mangBaiHat;
-    public SearchAdapter (Context context,ArrayList<BaiHatSearch> mbaiHat){
+    ArrayList<BaiHat> mangBaiHat;
+    public SearchAdapter (Context context,ArrayList<BaiHat> mbaiHat){
         this.context = context;
         this.mangBaiHat = mbaiHat;
     }
@@ -47,7 +46,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
-        BaiHatSearch baihat = mangBaiHat.get(position);
+        BaiHat baihat = mangBaiHat.get(position);
         holder.tvTenBaiHat.setText(baihat.getTenBaiHat());
         holder.tvTenCaSi.setText(baihat.getCaSi());
         if (baihat.getUsername().equals(LoginActivity.user)){
@@ -70,49 +69,48 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             tvTenCaSi = view.findViewById(R.id.tvTenCaSi);
             imgBaiHat = view.findViewById(R.id.imgSongSearch);
             imgFavorite = view.findViewById(R.id.imgFavorite);
-            itemView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    
-                }
+            itemView.setOnClickListener(view12 -> {
+
             });
-            imgFavorite.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    int i= getAdapterPosition();
-                    BaiHatSearch baihat= mangBaiHat.get(i);
-                    if (baihat.getUsername().equals(LoginActivity.user)){
-                        DataService dataService = APIService.getService();
-                        Call<Void> callback = dataService.DeleteYeuThich(Integer.parseInt(baihat.getIdBaiHat()) ,LoginActivity.user);
-                        callback.enqueue(new Callback<Void>() {
-                            @Override
-                            public void onResponse(Call<Void> call, Response<Void> response) {
-                                imgFavorite.setImageResource(R.drawable.baseline_favorite_black);
-                            }
+            imgFavorite.setOnClickListener(view1 -> {
+                int i= getAdapterPosition();
+                BaiHat baihat= mangBaiHat.get(i);
+                if (baihat.getUsername().equals(LoginActivity.user)){
+                    DataService dataService = APIService.getService();
+                    Call<Void> callback = dataService.DeleteYeuThich(Integer.parseInt(baihat.getIdBaiHat()) ,LoginActivity.user);
+                    callback.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            imgFavorite.setImageResource(R.drawable.baseline_favorite_black);
+                        }
 
-                            @Override
-                            public void onFailure(Call<Void> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
 
-                            }
-                        });
-                    } else{
-                        DataService dataService = APIService.getService();
-                        Call<Void> callback = dataService.AddYeuThich(Integer.parseInt(baihat.getIdBaiHat()) ,LoginActivity.user);
-                        callback.enqueue(new Callback<Void>() {
-                            @Override
-                            public void onResponse(Call<Void> call, Response<Void> response) {
-                                imgFavorite.setImageResource(R.drawable.baseline_favorite_red);
-                            }
+                        }
+                    });
+                } else{
+                    DataService dataService = APIService.getService();
+                    Call<Void> callback = dataService.AddYeuThich(Integer.parseInt(baihat.getIdBaiHat()) ,LoginActivity.user);
+                    callback.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            imgFavorite.setImageResource(R.drawable.baseline_favorite_red);
+                        }
 
-                            @Override
-                            public void onFailure(Call<Void> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
 
-                            }
-                        });
-                    }
-
-
+                        }
+                    });
                 }
+
+
+            });
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, PlayNhacActivity.class);
+                intent.putExtra("cakhuc", mangBaiHat.get(getPosition()));
+                context.startActivity(intent);
             });
         }
     }

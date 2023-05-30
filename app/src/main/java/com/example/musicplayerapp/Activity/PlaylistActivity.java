@@ -54,10 +54,6 @@ public class PlaylistActivity extends AppCompatActivity{
             BaiHat baiHat = intent.getParcelableExtra("cakhuc");
             Toast.makeText(this, baiHat.getTenBaiHat(), Toast.LENGTH_SHORT).show();
         }
-//        if(intent,hasEXtra("cacbaihat")){
-//            ArrayList<BaiHat> mangbaihat = intent.getParcelableExtra("cacbaihat");
-//            for(int i = 0 ; i<mangbaihat.size())
-//        }
         permission();
     }
 

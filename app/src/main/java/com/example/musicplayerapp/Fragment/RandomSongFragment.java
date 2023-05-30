@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.example.musicplayerapp.Activity.LoginActivity;
 import com.example.musicplayerapp.Class.SearchAdapter;
 import com.example.musicplayerapp.Model.APIService;
-import com.example.musicplayerapp.Model.BaiHatSearch;
+import com.example.musicplayerapp.Model.BaiHat;
 import com.example.musicplayerapp.Model.DataService;
 import com.example.musicplayerapp.R;
 
@@ -39,11 +39,11 @@ public class RandomSongFragment extends Fragment {
     }
     private void GetData(){
         DataService dataService = APIService.getService();
-        Call<List<BaiHatSearch>> callback = dataService.GetRandomSong("random", LoginActivity.user);
-        callback.enqueue(new Callback<List<BaiHatSearch>>() {
+        Call<List<BaiHat>> callback = dataService.GetRandomSong("random", LoginActivity.user);
+        callback.enqueue(new Callback<List<BaiHat>>() {
             @Override
-            public void onResponse(Call<List<BaiHatSearch>> call, Response<List<BaiHatSearch>> response) {
-                ArrayList<BaiHatSearch> mangbaihat = (ArrayList<BaiHatSearch>) response.body();
+            public void onResponse(Call<List<BaiHat>> call, Response<List<BaiHat>> response) {
+                ArrayList<BaiHat> mangbaihat = (ArrayList<BaiHat>) response.body();
                 searchAdapter = new SearchAdapter(getActivity(),mangbaihat);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 recyclerView.setLayoutManager(linearLayoutManager);
@@ -52,7 +52,7 @@ public class RandomSongFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<BaiHatSearch>> call, Throwable t) {
+            public void onFailure(Call<List<BaiHat>> call, Throwable t) {
             }
         });
     }

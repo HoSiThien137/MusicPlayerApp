@@ -52,13 +52,10 @@ public class DanhSachChuDeAdapter extends RecyclerView.Adapter<DanhSachChuDeAdap
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgchude = itemView.findViewById(R.id.imageviewdongcacchude);
-            imgchude.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, DanhSachTheLoaiTheoChuDeActivity.class);
-                    intent.putExtra("chude",mangchude.get(getPosition()));
-                    context.startActivity(intent);
-                }
+            imgchude.setOnClickListener(v -> {
+                Intent intent = new Intent(context, DanhSachTheLoaiTheoChuDeActivity.class);
+                intent.putExtra("chude",mangchude.get(getPosition()));
+                context.startActivity(intent);
             });
 
         }

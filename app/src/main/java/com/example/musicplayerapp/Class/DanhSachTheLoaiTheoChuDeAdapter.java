@@ -57,13 +57,10 @@ public class DanhSachTheLoaiTheoChuDeAdapter extends RecyclerView.Adapter<DanhSa
             super(itemView);
             imghinhnen = itemView.findViewById(R.id.imageviewtheloaitheochude);
             txttentheloai = itemView.findViewById(R.id.textviewtheloaitheochude);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, DanhsachbaihatActivity.class);
-                    intent.putExtra("idtheloai", theLoaiArrayList.get(getPosition()));
-                    context.startActivity(intent);
-                }
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, DanhsachbaihatActivity.class);
+                intent.putExtra("idtheloai", theLoaiArrayList.get(getPosition()));
+                context.startActivity(intent);
             });
 
         }
